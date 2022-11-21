@@ -1,0 +1,149 @@
+<div class="appointment">
+  <form name=""
+        class="appointment__window appointment-form"
+        (ngSubmit)="onSubmit()"
+        [formGroup]="formAppointment" >
+    <div class="appointment__booking" >
+      <div class="appointment__booking_title price__title">
+        <p>Выберите удобную дату, время и место</p>
+      </div>
+      <div class="appointment__datePlace">
+        <div class="appointment__date">
+
+
+          <div class="appointment__date_input">
+            <input [(ngModel)]="dateDay"
+                   name="day"
+                   type="number"
+                   placeholder="day"
+                   formControlName="day">
+            <button (click)="decrementDay()"></button>
+            <button (click)="incrementDay()"></button>
+          </div>
+          <div class="appointment__date_input">
+            <input [(ngModel)]="dateMonth"
+                   name="month"
+                   type="text"
+                   placeholder="month"
+                   formControlName="month">
+            <button (click)="decrementMonth()"></button>
+            <button (click)="incrementMonth()"></button>
+          </div>
+
+
+          <div class="appointment__date_input">
+            <input [(ngModel)]="dateYear"
+                   name="year"
+                   type="number"
+                   placeholder="year"
+                   formControlName="year">
+            <ul
+              class="auth-form__item_errors-list errors-list"
+              *ngIf="formAppointment.get('year')?.invalid" >
+              <li class="errors-list__item" *ngIf="formAppointment.get('year')?.errors?.['required']">
+                <span >The field must be filled in</span>
+              </li>
+              <li class="errors-list__item" *ngIf="formAppointment.get('year')?.errors?.['max']">
+                <span >The field must be less</span>
+              </li>
+              <li class="errors-list__item" *ngIf="formAppointment.get('year')?.errors?.['min']">
+                <span >The field must be more</span>
+              </li>
+            </ul>
+            <button (click)="decrementYear()"></button>
+            <button (click)="incrementYear()"></button>
+          </div>
+
+
+          <div class="appointment__date_input">
+            <input [(ngModel)]="TimeString"
+                   name="time"
+                   type="text"
+                   formControlName="time">
+            <button (click)="decrementTime()"></button>
+            <button (click)="incrementTime()"></button>
+          </div>
+
+
+        </div>
+        <ul class="appointment__addresses addresses-list">
+          <li class="addresses-list__item">
+            <input id="MoscowRodionova22"  checked class="addresses-list__input" type="radio" name="address">
+            <label class="addresses-list__item_label" for="MoscowRodionova22">г. Москва, улица Родионова, дом 22
+            </label>
+          </li>
+          <li class="addresses-list__item">
+            <input id="EkaterinburgZelenya121A"  class="addresses-list__input" type="radio" name="address">
+            <label for="EkaterinburgZelenya121A" class="addresses-list__item_label">г. Екатеринбург, улица Зеленая, дом 121/а</label>
+          </li>
+          <li class="addresses-list__item">
+            <input id="SPBMolokozavodskya9"  class="addresses-list__input" type="radio" name="address">
+            <label class="addresses-list__item_label" for="SPBMolokozavodskya9">г. Санкт-Петербург, улица Молокозаводская, дом 9</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="appointment__filter">
+      <div class="appointment__filter_title price__title">
+        <p>Укажите диапазон цены</p>
+      </div>
+      <div class="appointment__range">
+        <input class="appointment__range_input" type="number" placeholder="0" name="minValue"
+               [(ngModel)]="minValue">
+        <input class="appointment__range_input" type="number" placeholder="none" name="maxValue"
+               [(ngModel)]="maxValue" (click)="Show()">
+      </div>
+    </div>
+
+    <div class="price__button">
+      <button class="price__button-sort style-btn" (click)="SwitchSort()">Сортировать по цене</button>
+    </div>
+
+    <ul class="price__list price-list">
+      <li class="price-list__item"
+          *ngFor="let hairstyle of menu">
+        <div class="price-list__title">
+          <p>{{hairstyle.title}}</p>
+        </div>
+        <ul class="price-list__list section-list">
+          <li class="section-list__item"
+              *ngFor="let haircut of hairstyle.SectionInfo | filterByRange: minValue: maxValue: sortAscending">
+            <div class="section-list__title">
+              <p>{{haircut.title}}</p>
+            </div>
+            <div class="section-list__duration">
+              <p>{{haircut.duration}} min</p>
+            </div>
+            <div class="section-list__price">
+              <p>${{haircut.price}}</p>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="appointment__choosing">
+      <div class="appointment__choosing_title price__title">
+        <p>Выберите прическу, которая Вам нравится</p>
+      </div>
+      <ul class="appointment__gallery gallery-list" *ngFor="let section of menu">
+        <li class="gallery-list__item"
+            *ngFor="let item of section.SectionInfo | filterByRange: minValue: maxValue: sortAscending"
+            (click)="onSelectItem(item)" [class._active]="item == activeItem">
+          <div class="gallery-list__image"><img src="{{item.imagePath}}" alt=""></div>
+          <div class="gallery-list__description">
+            <div class="gallery-list__title">
+              <p>{{item.title}}</p>
+            </div>
+            <div class="gallery-list__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi assumenda at culpa debitis deserunt dolor doloremque dolorum ducimus eos fuga fugiat in minima molestiae natus nihil perferendis praesentium provident quaerat quidem quis, saepe, sapiente voluptate, voluptatem. Alias deleniti eius eos fugiat, impedit in ipsam itaque officia omnis pariatur placeat veritatis.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="appointment__accepting">
+      <button class="appointment__accepting_btn style-btn" [disabled]="formAppointment.invalid">Accept</button>
+    </div>
+  </form>
+</div>

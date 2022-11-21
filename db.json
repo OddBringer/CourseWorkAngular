@@ -1,0 +1,79 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@mail.ru",
+      "name": "Имя",
+      "password": "123456"
+    },
+    {
+      "email": "ddq we2 e2",
+      "name": "www@sas",
+      "password": "123123123",
+      "id": 2
+    },
+    {
+      "email": "eeeeee",
+      "name": "1111@111",
+      "password": "000111",
+      "id": 3
+    },
+    {
+      "email": "TestName",
+      "name": "TestEmail@mail.ru",
+      "password": "testest",
+      "id": 4
+    },
+    {
+      "name": "nameOne",
+      "email": "One@mail.ru",
+      "password": "123456",
+      "id": 5
+    },
+    {
+      "name": "вфыв",
+      "email": "fsdjkn@asdasd",
+      "password": "das32d",
+      "id": 6
+    },
+    {
+      "name": "1",
+      "email": "1@1",
+      "password": "111111",
+      "id": 7
+    },
+    {
+      "name": "2",
+      "email": "2@2",
+      "password": "222222",
+      "dateAppointment": "2022-11-15T18:15:15.876Z",
+      "id": 8
+    },
+    {
+      "name": "kd s",
+      "email": "k@1",
+      "password": "111111",
+      "dateAppointment": "1899-12-30T21:29:43.000Z",
+      "id": 9
+    },
+    {
+      "name": "kd",
+      "email": "l@1",
+      "password": "111111",
+      "dateAppointment": "1899-12-30T21:29:43.000Z",
+      "id": 10
+    },
+    {
+      "name": "lfmds f",
+      "email": "kfjd@dsfds",
+      "password": "iuoenw",
+      "id": 11
+    },
+    {
+      "name": "Bob",
+      "email": "b@a",
+      "password": "124edsc",
+      "id": 12
+    }
+  ]
+}
